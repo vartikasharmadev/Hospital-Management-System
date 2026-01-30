@@ -69,14 +69,6 @@ Password - masai
 - Generating reports 
 - Overall control of hospital
 
-## 🔗 Links
-
-Dashboard - https://hm-system.netlify.app/
-
-User Side - https://hms-user-side.netlify.app/
-
-Server - https://github.com/piyush-agrawal6/HMS-Backend
-
 ## Screenshots
 
 1.Dashboard
