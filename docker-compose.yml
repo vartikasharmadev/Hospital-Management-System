@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:6.0
+    container_name: hms-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - hms-network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+
+  # Backend API Server
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: hms-backend
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+      - port=8080
+      - dbURL=mongodb://mongodb:27017/hms
+      - key=hms_jwt_secret_key_2024
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - hms-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # Frontend React App
+  frontend:
+    build:
+      context: ./FrontEnd
+      dockerfile: Dockerfile
+      args:
+        - REACT_APP_API_URL=http://localhost:8080
+    container_name: hms-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - hms-network
+
+  # MongoDB Seed Service (runs once to create default admin)
+  seed:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: hms-seed
+    environment:
+      - NODE_ENV=production
+      - port=8080
+      - dbURL=mongodb://mongodb:27017/hms
+      - key=hms_jwt_secret_key_2024
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - hms-network
+    command: node seed.js
+    restart: "no"
+
+networks:
+  hms-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+    driver: local
+

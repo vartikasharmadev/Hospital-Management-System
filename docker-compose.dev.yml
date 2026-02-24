@@ -1,0 +1,67 @@
+version: '3.8'
+
+# Development Docker Compose - with hot reload
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:6.0
+    container_name: hms-mongodb-dev
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data_dev:/data/db
+    networks:
+      - hms-network-dev
+
+  # Backend API Server (Development with hot reload)
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile.dev
+    container_name: hms-backend-dev
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=development
+      - port=8080
+      - dbURL=mongodb://mongodb:27017/hms
+      - key=hms_jwt_secret_key_2024
+    volumes:
+      - ./Backend:/app
+      - /app/node_modules
+    depends_on:
+      - mongodb
+    networks:
+      - hms-network-dev
+
+  # Frontend React App (Development with hot reload)
+  frontend:
+    build:
+      context: ./FrontEnd
+      dockerfile: Dockerfile.dev
+    container_name: hms-frontend-dev
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8080
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    volumes:
+      - ./FrontEnd:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - hms-network-dev
+
+networks:
+  hms-network-dev:
+    driver: bridge
+
+volumes:
+  mongodb_data_dev:
+    driver: local
+
