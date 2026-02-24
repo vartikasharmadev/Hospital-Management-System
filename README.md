@@ -1,84 +1,103 @@
-# Professional Hospital Management System
 
-A comprehensive, full-stack Hospital Management System designed to digitize and streamline hospital operations. Built with the **MERN** stack (MongoDB, Express, React, Node.js), this application provides a centralized platform for managing patients, doctors, nurses, appointments, beds, and medical reports.
+## To Run Locally
 
-**Designed and Re-engineered by [Vartika Sharma](https://github.com/vartikasharmadev)**
+Clone the project
 
-## 🌟 Key Features
 
-- **Role-Based Access Control**: Secure login systems for Admin, Doctor, and Nurse roles.
-- **Dynamic Dashboard**: Real-time statistics and overview of hospital metrics.
-- **Personalized Profiles**: Customized views for medical professionals (e.g., [Vartika Sharma's Profile](file:///Users/dineshgoyal/.gemini/antigravity/brain/b882c044-23ba-4b2a-b77f-8f4c2b08e0c6/vartika_profile_page_1771944900717.png)).
-- **Patient Management**: Full lifecycle management from registration and admission to discharge.
-- **Resource Tracking**: Real-time tracking of bed occupancy and ambulance fleet.
-- **Medical Documentation**: Digital generation of medical reports and prescriptions.
-- **Appointment Scheduling**: Efficient scheduling and management of patient-doctor consultations.
 
-## 📸 Visible Pages
+Go to the project directory
 
-````carousel
-![Main Dashboard](file:///Users/dineshgoyal/.gemini/antigravity/brain/b882c044-23ba-4b2a-b77f-8f4c2b08e0c6/main_dashboard_1771944485136.png)
-<!-- slide -->
-![Vartika Sharma's Profile](file:///Users/dineshgoyal/.gemini/antigravity/brain/b882c044-23ba-4b2a-b77f-8f4c2b08e0c6/vartika_profile_page_1771944900717.png)
-<!-- slide -->
-![Doctor Dashboard Overview](file:///Users/dineshgoyal/.gemini/antigravity/brain/b882c044-23ba-4b2a-b77f-8f4c2b08e0c6/doctor_dashboard_overview_1771944929485.png)
-<!-- slide -->
-![Add Doctor - Management View](file:///Users/dineshgoyal/.gemini/antigravity/brain/b882c044-23ba-4b2a-b77f-8f4c2b08e0c6/add_doctor_page_1771944502853.png)
-<!-- slide -->
-![Login Page](file:///Users/dineshgoyal/.gemini/antigravity/brain/b882c044-23ba-4b2a-b77f-8f4c2b08e0c6/final_login_page_1771944944449.png)
-````
+```bash
+  cd Hospital-Management-System
+```
 
-## 🛠️ Tech Stack
+Install dependencies
 
-### Frontend
-- **React**: Modern UI component architecture.
-- **Redux / Redux Thunk**: Complex state management.
-- **Ant Design**: Professional-grade UI components.
-- **Axios**: Efficient API interaction.
+```bash
+  npm install
+```
 
-### Backend
-- **Node.js & Express**: High-performance server environment.
-- **MongoDB**: Scalable NoSQL database.
-- **Mongoose**: Robust object modeling.
-- **JWT**: Secure token-based authentication.
+Start the server
 
-## 🚀 Getting Started
+```bash
+  npm run start
+```
 
-### Prerequisites
-- Node.js (v20+ recommended)
-- MongoDB (Running locally on default port 27017)
 
-### Installation
+# Hospital Management System
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/vartikasharmadev/Hospital-Management-System.git
-   cd Hospital-Management-System
-   ```
+This a a website, where we can control all the management related to a hospital online, like admitting patient, booking bed, booking ambulance, managing payment and more.
 
-2. **Backend Setup**
-   ```bash
-   cd Backend
-   npm install
-   # Create a .env file (see .env.example)
-   node seed.js # Seed initial data (Vartika Sharma etc.)
-   npm run dev
-   ```
+![1](https://user-images.githubusercontent.com/100460788/215811132-40070d36-862a-4154-adc0-903c6fa65394.jpg)
 
-3. **Frontend Setup**
-   ```bash
-   cd ../FrontEnd
-   npm install
-   npm start
-   ```
+## Tech Stack
 
-## 🔐 Credentials (Default)
+**Client:** 
 
-| Role | ID | Password |
-| :--- | :--- | :--- |
-| **Admin** | 100 | masai |
-| **Doctor** | 101 | masai |
-| **Nurse** | 102 | masai |
+- **React**
+- **Redux Thunk**
+- **Axios**
+- **Ant-Designs**
 
----
-*Created and maintained by [Vartika Sharma](https://github.com/vartikasharmadev).*
+**Server:**
+
+- **Node Js**
+- **Mongo DB**
+- **Express Js**
+- **JWT**
+- **Nodemailer**
+
+## Deployment
+
+- **Client**  (Netlify)
+- **Server** - (Cyclic)
+
+## Credentials
+
+ID - 100
+
+Password - masai
+
+## Features
+
+- Admin controls
+- Admitting Patients
+- Booking beds and ambulance
+- Creating appointments
+- Generating reports 
+- Overall control of hospital
+
+## Screenshots
+
+1.Dashboard
+
+![31 01 2023_21 16 55_REC](https://user-images.githubusercontent.com/100460788/215808721-eb9f8778-53df-43fe-a1ab-662c0ff78c4f.png)
+
+2.Profile
+
+![31 01 2023_21 17 08_REC](https://user-images.githubusercontent.com/100460788/215808736-31e6dd9e-e5f3-4a48-9bbf-d505c27579c2.png)
+
+3.Beds
+
+![31 01 2023_21 17 21_REC](https://user-images.githubusercontent.com/100460788/215808740-af93a793-4a82-44c5-9eab-1bc11a6a6068.png)
+
+4.Book appointment
+
+![31 01 2023_21 17 43_REC](https://user-images.githubusercontent.com/100460788/215808744-417cbac9-eb6c-41d0-a4a9-414bb91cd03e.png)
+
+5.Add profile
+
+![31 01 2023_21 18 12_REC](https://user-images.githubusercontent.com/100460788/215808745-9813e61d-a13c-447f-b3c9-1f910ba8531f.png)
+
+6.Add ambulance
+
+![31 01 2023_21 18 30_REC](https://user-images.githubusercontent.com/100460788/215808748-9bb5d05d-afb1-41a3-9427-38089a28d0ed.png)
+
+7.Login Page
+
+![31 01 2023_21 15 44_REC](https://user-images.githubusercontent.com/100460788/215808752-4ebfb582-1db0-45e4-ac53-a87a5f1b75ea.png)
+
+## Presentation
+
+Link - <a href="https://drive.google.com/file/d/1xwcSsjdl6QHnJ-JXl11moBAwSqSQFRjh/view?usp=sharing" alt="presentation">Drive</a>
+
